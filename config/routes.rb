@@ -1,4 +1,12 @@
 Heromaker::Application.routes.draw do
+
+  match "game/start"
+
+  match "game/bye"
+
+  match "admin/chara_list"
+  match "admin/state_list"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

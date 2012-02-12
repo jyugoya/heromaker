@@ -1,0 +1,10 @@
+﻿<h1>キャラクタ一覧</h1>
+
+<table class="characters">
+  <col class="name" />
+  <col class="birthday" />
+  <% @characters.each do |character| %>
+    <%= render :partial => 'chara', :locals => { :character => character } %>
+  <% end %>
+</table>
+

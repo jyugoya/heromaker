@@ -1,0 +1,11 @@
+﻿<h1>ゲーム状態一覧</h1>
+
+<table class="states">
+  <tr><th>プレイヤー</th><th>現在日時</th></tr>
+  <col class="player" />
+  <col class="current" />
+  <% @states.each do |state| %>
+    <%= render :partial => 'state', :locals => { :state => state } %>
+  <% end %>
+</table>
+

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player: MyString
+  current: 1958-02-13
+
+two:
+  player: MyString
+  current: 1058-02-13

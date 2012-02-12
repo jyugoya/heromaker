@@ -1,0 +1,35 @@
+// Place all the styles related to the admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {  
+  width: 560px;  
+  margin: 5px auto;  
+  background-color: #eee;  
+  border-collapse: collapse;  
+  border-spacing: 0;  
+}  
+
+table tr {  
+  border: solid 1px #ccc;  
+}  
+
+table td {  
+  padding: 5px;  
+}  
+
+table.characters col.name {  
+  width: 400px;  
+}  
+      
+table.characters col.birthday {  
+  background-color: #ddd;  
+}
+
+table.states col.player {  
+  width: 400px;  
+}  
+      
+table.states col.current {  
+  background-color: #ddd;  
+}
