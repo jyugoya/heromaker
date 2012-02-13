@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  before_filter :authenticate_user!
 
   def chara_list
     @characters = Character.all(:order => "name")  

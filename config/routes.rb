@@ -1,6 +1,8 @@
 Heromaker::Application.routes.draw do
+  root :to => 'home#index'
 
-  match "game/start"
+  devise_for :users
+  get 'game', :to => 'game#start', :as => :user_root
 
   match "game/bye"
 
