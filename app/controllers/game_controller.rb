@@ -59,7 +59,12 @@ private
     results = []
     max = day.day
     while i < max do
-      results.push(d.to_s)
+      r = d.to_s
+      e = procEvent(d)
+      if e
+        r = r + " (" + e.name + ")"
+      end
+      results.push(r)
       i = i + 1
       d = d + 1
     end
@@ -85,5 +90,14 @@ private
   def procTimeOver(current_state)
     @message = "育成期間は終了しました。"
     @results = []
+  end
+
+  def procEvent(day)
+    e = Event.where("s_date <= ? AND e_date >= ?", day, day).first
+    r = rand(100) # 0～99
+    if e && e.probability < r
+      e = nil
+    end
+    return e
   end
 end
