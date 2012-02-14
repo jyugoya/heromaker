@@ -2,6 +2,9 @@ class AdminController < ApplicationController
   # before_filter :authenticate_user!
   before_filter :is_admin?
 
+  def index
+  end
+
   def user_list
     @users = User.all(:order => "id")
   end
