@@ -1,2 +1,7 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+﻿// Use this README file to introduce your application and point to useful places in the API for learning more.
+// Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+
+Japanese only.
+
+全体の設計についてはとりあえず、Wiki（ https://github.com/jyugoya/heromaker/wiki ）の方にごそごそ書いたので、そっち見てください。
+API文書生成は、また後で。
