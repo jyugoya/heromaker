@@ -1,10 +1,23 @@
-﻿<html>
-<head>
-<title>Game Start</title>
-</head>
-<body>
-<p>ゲームの開始画面です。
-中身はまだありません。
+﻿<p>ゲームの開始画面です。
+中身は現在作成中ですよん。
 </p>
-</body>
-</html>
+<p>
+ゲーム内容の説明：<br/>
+プレイヤーはマーベリックさんになってバニーを4歳から育成します。
+最終目標はヒーローにしてKOHを目指させることです。
+バニーは両親殺害事件のトラウマにスイッチが入るとハンサムエスケープします。
+記憶いじることも可能ですが使い過ぎると矛盾が起きて精神崩壊します。
+</p>
+<p>
+<%= "育成中キャラクター：" + @current_chara.name if @has_data %>
+<%= "（日付：" + @current_state.current.to_s + "）" if @has_data %>
+<%= "まだデータを作成していません。" unless @has_data %>
+<br />
+<%= "このキャラでゲームを開始しますか？ [" if @has_data %>
+<%= link_to('継続', :game_play) if @has_data %>
+<%= "]" if @has_data %>
+<%= "または新規に作成しますか？ [" if @has_data %>
+<%= "新規作成してゲームを始めますか？ [" unless @has_data %>
+<%= link_to('新規', :game_new) %>
+<%= "]" %>
+</p>

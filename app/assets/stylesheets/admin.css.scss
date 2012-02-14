@@ -33,3 +33,11 @@ table.states col.player {
 table.states col.current {  
   background-color: #ddd;  
 }
+
+table.users col.id {  
+  width: 10px;  
+}  
+      
+table.users col.name {  
+  background-color: #ddd;  
+}

@@ -1,10 +1,89 @@
-class GameController < ApplicationController
+﻿class GameController < ApplicationController
   before_filter :authenticate_user!
 
   def start
+    @current_chara = Character.where(:user_id => current_user.id).first;
+    @current_state = State.where(:user_id => current_user.id).first;
+    @has_data = @current_chara && @current_state
+  end
+
+  def new
+    Character.delete_all("user_id = " + current_user.id.to_s)
+    State.delete_all("user_id = " + current_user.id.to_s)
+    @current_chara = Character.new(
+                       :user_id => current_user.id,
+                       :name => 'バーナビー・マーベリック',
+                       :birthday => '1953-10-31'
+                     );
+    @current_chara.save;
+    @current_state = State.new(
+                       :user_id => current_user.id,
+                       :current => '1958-01-01'
+                     );
+    @current_state.save;
+  end
+
+  def play
+    @current_chara = Character.where(:user_id => current_user.id).first;
+    @current_state = State.where(:user_id => current_user.id).first;
+    @age = calcAge(@current_state.current, @current_chara.birthday)
+
+    day = @current_state.current
+    l_day = Time.local(1962, 9, 30, 0, 0, 0) # ゲームの終わり
+    t_day = Time.local(day.year, day.month, day.day, 0, 0, 0)
+    if (t_day.to_i < l_day.to_i)
+      procCommand(@current_state)
+    else
+      procTimeOver(@current_state)
+    end
   end
 
   def bye
   end
 
+  def test
+
+  end
+
+private
+
+  def calcAge(calcDay, birthDay)
+    (calcDay.strftime("%Y%m%d").to_i-birthDay.strftime("%Y%m%d").to_i)/10000
+  end
+
+  def getResults(current_state)
+    d = current_state.current
+    day = d
+    day = (day >> 1) - 1 # 最終日
+    i = 0
+    results = []
+    max = day.day
+    while i < max do
+      results.push(d.to_s)
+      i = i + 1
+      d = d + 1
+    end
+    current_state.current = d
+    current_state.save
+    return results
+  end
+
+  def procCommand(current_state)
+    command = params[:command]
+    if (params[:commit] && !(command.blank?))
+      @message = ((current_state.current >> 1) - 1).to_s
+      @message += "まで"
+      @message += command
+      @message += "をおこないます"
+      @results = getResults(@current_state)
+    else
+      @message = "コマンドを入力してください"
+      @results = []
+    end
+  end
+
+  def procTimeOver(current_state)
+    @message = "育成期間は終了しました。"
+    @results = []
+  end
 end

@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(:version => 20120213020737) do
 
   create_table "characters", :force => true do |t|
+    t.integer  "user_id"
     t.string   "name",       :limit => 32
     t.date     "birthday"
     t.datetime "created_at",               :null => false
@@ -21,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20120213020737) do
   end
 
   create_table "states", :force => true do |t|
-    t.string   "player"
+    t.integer  "user_id"
     t.date     "current"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

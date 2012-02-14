@@ -4,8 +4,15 @@ Heromaker::Application.routes.draw do
   devise_for :users
   get 'game', :to => 'game#start', :as => :user_root
 
+  match "game/play"
+  match "game/new"
   match "game/bye"
 
+  controller :game do
+    match "test", :to => :test
+  end
+
+  match "admin/user_list"
   match "admin/chara_list"
   match "admin/state_list"
 

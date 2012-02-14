@@ -1,3 +1,59 @@
 // Place all the styles related to the game controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div#main_div {
+  margin: 0 auto;
+  padding: 0;
+  background-color: #fff;
+  width: 700px;
+  height: 400px;
+}
+
+div#status_div {
+  margin: 0;
+  padding: 2;
+  background-color: #eee;
+  border: solid 1px #ccc;
+  float: left;
+  left-margin: 5px;
+  width: 240px;
+  height: 100%;
+  overflow: auto;
+}
+
+div#work_div {
+  margin: 0;
+  padding: 2;
+  background-color: #eee;
+  border: solid 1px #ccc;
+  float: right;
+  margin-left: 260;
+  width: 440px;
+  height: 100%;
+}
+
+div#command_div {
+  margin: 0;
+  padding: 5;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  height: 100px;
+}
+
+div#result_div {
+  margin: 0;
+  padding: 5;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  overflow: auto;
+  height: 100px;
+}
+
+div#event_div {
+  margin: 0;
+  padding: 5;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  height: 280px;
+}

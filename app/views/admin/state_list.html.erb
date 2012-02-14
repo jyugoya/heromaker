@@ -2,7 +2,7 @@
 
 <table class="states">
   <tr><th>プレイヤー</th><th>現在日時</th></tr>
-  <col class="player" />
+  <col class="user_id" />
   <col class="current" />
   <% @states.each do |state| %>
     <%= render :partial => 'state', :locals => { :state => state } %>

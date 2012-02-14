@@ -1,0 +1,36 @@
+﻿<div id="main_div">
+
+
+<div id="status_div">
+<p>
+育成中キャラクター
+</p>
+<p>
+名前：<%= @current_chara.name %><br />
+誕生日：<%= @current_chara.birthday %><br />
+年齢：<%= @age %>
+</p>
+</div>
+
+<div id="work_div">
+<div id="command_div">
+<p>
+今日：<%= @current_state.current %><br/>
+この月は何をしますか？
+</p>
+<%= form_tag({:controller => "game", :action => "play"},
+             {:method => :get, :id => "result_form"}) do -%>
+<%= text_field_tag 'command' %>
+<%= submit_tag("実行") %>
+<% end -%>
+</div>
+<div id="result_div">
+<% @results.each do |r| %>
+  <%= r %><br />
+<% end %>
+</div>
+<div id="event_div">
+<p><%= @message %></p>
+</div>
+</div>
+</div>

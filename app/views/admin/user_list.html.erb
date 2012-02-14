@@ -1,0 +1,13 @@
+﻿<h1>登録ユーザ一覧</h1>
+
+<table class="states">
+  <tr><th>ID</th><th>ユーザ名</th><th>メアド</th><th>管理者</th></tr>
+  <col class="id" />
+  <col class="name" />
+  <col class="email" />
+  <col class="is_admin" />
+  <% @users.each do |user| %>
+    <%= render :partial => 'user', :locals => { :user => user } %>
+  <% end %>
+</table>
+
