@@ -3,4 +3,4 @@
   :email => 'admin@example.com',
   :password => 'iamhero')
 user.is_admin = true
-user.save 
+user.save

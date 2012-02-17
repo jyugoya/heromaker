@@ -12,9 +12,11 @@ Heromaker::Application.routes.draw do
     match "test", :to => :test
   end
 
-  match "admin/user_list"
-  match "admin/chara_list"
-  match "admin/state_list"
+  get 'admin', :to => 'admin#index'
+  get "admin/index"
+  get "admin/user_list"
+  get "admin/chara_list"
+  get "admin/state_list"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -26,7 +26,6 @@
   def play
     @current_chara = Character.where(:user_id => current_user.id).first;
     @current_state = State.where(:user_id => current_user.id).first;
-    @age = calcAge(@current_state.current, @current_chara.birthday)
 
     day = @current_state.current
     l_day = Time.local(1962, 9, 30, 0, 0, 0) # ゲームの終わり
@@ -36,6 +35,8 @@
     else
       procTimeOver(@current_state)
     end
+
+    @age = @current_chara.age(@current_state.current)
   end
 
   def bye
@@ -46,10 +47,6 @@
   end
 
 private
-
-  def calcAge(calcDay, birthDay)
-    (calcDay.strftime("%Y%m%d").to_i-birthDay.strftime("%Y%m%d").to_i)/10000
-  end
 
   def getResults(current_state)
     d = current_state.current
