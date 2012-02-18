@@ -12,12 +12,15 @@
 <%= "育成中キャラクター：" + @current_chara.name if @has_data %>
 <%= "（日付：" + @current_state.current.to_s + "）" if @has_data %>
 <%= "まだデータを作成していません。" unless @has_data %>
-<br />
-<%= "このキャラでゲームを開始しますか？ [" if @has_data %>
-<%= link_to('継続', :game_play) if @has_data %>
-<%= "]" if @has_data %>
-<%= "または新規に作成しますか？ [" if @has_data %>
-<%= "新規作成してゲームを始めますか？ [" unless @has_data %>
+</p>
+
+<p>
+<%= "このキャラでゲームを開始しますか？ [" if @has_data && ! @is_timeover %>
+<%= link_to('継続', :game_play) if @has_data && ! @is_timeover %>
+<%= "]" if @has_data && ! @is_timeover %>
+<%= "このキャラクターの育成期間は終了しています。" if @is_timeover %>
+<%= "それとも" if @has_data && ! @is_timeover %>
+<%= "新規にゲームを始めますか？ [" %>
 <%= link_to('新規', :game_new) %>
 <%= "]" %>
 </p>

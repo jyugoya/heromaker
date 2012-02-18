@@ -2,9 +2,10 @@
 
 <table class="characters">
   <col class="id" />
-  <col class="user_id" />
+  <col class="state_id" />
   <col class="name" />
   <col class="birthday" />
+  <tr><th>id</th><th>state_id</th><th>name</th><th>birthday</th></tr>
   <% @characters.each do |character| %>
     <%= render :partial => 'chara', :locals => { :character => character } %>
   <% end %>
