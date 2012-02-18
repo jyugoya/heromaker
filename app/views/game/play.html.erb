@@ -10,6 +10,11 @@
 誕生日：<%= @current_chara.birthday %><br />
 年齢：<%= @age %>
 </p>
+<% @current_chara.parameters.each do |p| %>
+  <%= p.name %>：<%= p.value %><br />
+<% end %>
+<p>
+</p>
 </div>
 
 <div id="work_div">
