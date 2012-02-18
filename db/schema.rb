@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217172538) do
+ActiveRecord::Schema.define(:version => 20120218052328) do
 
   create_table "characters", :force => true do |t|
     t.integer  "user_id"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(:version => 20120217172538) do
   end
 
   add_index "events", ["name"], :name => "index_events_on_name", :unique => true
+
+  create_table "parameters", :force => true do |t|
+    t.integer  "character_id"
+    t.string   "name",         :limit => 32
+    t.integer  "value"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
 
   create_table "states", :force => true do |t|
     t.integer  "user_id"
