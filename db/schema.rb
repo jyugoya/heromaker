@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218052328) do
+ActiveRecord::Schema.define(:version => 20120218063351) do
 
   create_table "characters", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "state_id"
     t.string   "name",       :limit => 32
     t.date     "birthday"
     t.datetime "created_at",               :null => false
@@ -28,7 +28,16 @@ ActiveRecord::Schema.define(:version => 20120218052328) do
     t.datetime "updated_at",               :null => false
   end
 
+  create_table "effects", :force => true do |t|
+    t.integer  "command_id"
+    t.string   "p_name",     :limit => 32
+    t.integer  "e_value"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
   create_table "events", :force => true do |t|
+    t.integer  "state_id"
     t.string   "name",        :limit => 32,  :default => "", :null => false
     t.date     "s_date"
     t.date     "e_date"
@@ -44,15 +53,17 @@ ActiveRecord::Schema.define(:version => 20120218052328) do
     t.integer  "character_id"
     t.string   "name",         :limit => 32
     t.integer  "value"
+    t.boolean  "is_hidden"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
 
   create_table "states", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "character_id"
     t.date     "current"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|

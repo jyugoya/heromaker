@@ -11,6 +11,5 @@ class User < ActiveRecord::Base
   # attr_accessible :email, :name, :remember_me 
   attr_accessible :is_admin, :as => :admin
 
-  has_one :character
   has_one :state
 end

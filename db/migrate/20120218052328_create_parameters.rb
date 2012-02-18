@@ -4,6 +4,7 @@ class CreateParameters < ActiveRecord::Migration
       t.integer :character_id
       t.string :name, :limit => 32
       t.integer :value
+      t.boolean :is_hidden
 
       t.timestamps
     end

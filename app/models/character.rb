@@ -1,5 +1,5 @@
 class Character < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :state
   has_many :parameters
 
   def age(calcDay)

@@ -2,30 +2,28 @@
   before_filter :authenticate_user!
 
   def start
-    @current_chara = Character.where(:user_id => current_user.id).first;
     @current_state = State.where(:user_id => current_user.id).first;
+    @current_chara = @current_state.character;
     @has_data = @current_chara && @current_state
   end
 
   def new
-    Character.delete_all("user_id = " + current_user.id.to_s)
+    # Character.delete_all("user_id = " + current_user.id.to_s)
     State.delete_all("user_id = " + current_user.id.to_s)
-    @current_chara = Character.new(
-                       :user_id => current_user.id,
-                       :name => 'バーナビー・マーベリック',
-                       :birthday => '1953-10-31'
-                     );
-    @current_chara.save;
-    @current_state = State.new(
+    @current_state = State.create(
                        :user_id => current_user.id,
                        :current => '1958-01-01'
                      );
-    @current_state.save;
+    @current_chara = Character.create(
+                       :state_id => @current_state.id,
+                       :name => 'バーナビー・マーベリック',
+                       :birthday => '1953-10-31'
+                     );
   end
 
   def play
-    @current_chara = Character.where(:user_id => current_user.id).first;
     @current_state = State.where(:user_id => current_user.id).first;
+    @current_chara = @current_state.character;
 
     day = @current_state.current
     l_day = Time.local(1962, 9, 30, 0, 0, 0) # ゲームの終わり
@@ -48,7 +46,7 @@
 
 private
 
-  def getResults(current_state)
+  def getResults(current_state, command)
     d = current_state.current
     day = d
     day = (day >> 1) - 1 # 最終日
@@ -57,6 +55,7 @@ private
     max = day.day
     while i < max do
       r = d.to_s
+      r += getDailyCommandResult(current_state, command)
       e = procEvent(d)
       if e
         r = r + " (" + e.name + ")"
@@ -70,14 +69,33 @@ private
     return results
   end
 
+  def getDailyCommandResult(current_state, command)
+    r = "：";
+    command.effects.each do |e|
+      c_chara = current_state.character
+      p = c_chara.parameters.find_by_name(e.p_name)
+      p.value += e.e_value
+      if p.value < 0
+        p.value = 0 # 0未満にはならない
+      end
+      p.save
+      r += e.p_name
+      if e.e_value > 0
+        r += "+"
+      end
+      r += e.e_value.to_s + " "
+    end
+    return r;
+  end
+
   def procCommand(current_state)
-    command = Command.where("id = ? ", params[:command_id]).first.name
-    if (params[:commit] && !(command.blank?))
+    if (params[:command_id])
+      command = Command.where("id = ? ", params[:command_id]).first
       @message = ((current_state.current >> 1) - 1).to_s
       @message += "まで"
-      @message += command
+      @message += command.name
       @message += "をおこないます"
-      @results = getResults(@current_state)
+      @results = getResults(@current_state, command)
     else
       @message = "コマンドを入力してください"
       @results = []
