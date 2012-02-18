@@ -20,7 +20,7 @@
 </p>
 <%= form_tag({:controller => "game", :action => "play"},
              {:method => :get, :id => "result_form"}) do -%>
-<%= text_field_tag 'command' %>
+<%= select_tag "command_id", options_from_collection_for_select(Command.find(:all), "id", "name") %>
 <%= submit_tag("実行") %>
 <% end -%>
 </div>

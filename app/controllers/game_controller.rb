@@ -71,7 +71,7 @@ private
   end
 
   def procCommand(current_state)
-    command = params[:command]
+    command = Command.where("id = ? ", params[:command_id]).first.name
     if (params[:commit] && !(command.blank?))
       @message = ((current_state.current >> 1) - 1).to_s
       @message += "まで"
