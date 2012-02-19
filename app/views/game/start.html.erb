@@ -10,7 +10,7 @@
 </p>
 <p>
 <%= "育成中キャラクター：" + @current_chara.name if @has_data %>
-<%= "（日付：" + @current_state.current.to_s + "）" if @has_data %>
+<%= "（日付：" + @current_state.c_date.to_s + "）" if @has_data %>
 <%= "まだデータを作成していません。" unless @has_data %>
 </p>
 

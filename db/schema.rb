@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218063351) do
+ActiveRecord::Schema.define(:version => 20120218164622) do
 
   create_table "characters", :force => true do |t|
     t.integer  "state_id"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20120218063351) do
   end
 
   create_table "commands", :force => true do |t|
-    t.integer  "state_id"
     t.string   "name",       :limit => 32
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
@@ -58,10 +57,19 @@ ActiveRecord::Schema.define(:version => 20120218063351) do
     t.datetime "updated_at",                 :null => false
   end
 
+  create_table "results", :force => true do |t|
+    t.integer  "state_id"
+    t.string   "r_string"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "states", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "character_id"
-    t.date     "current"
+    t.date     "c_date"
+    t.date     "turn_end"
+    t.integer  "c_command_id"
+    t.integer  "c_event_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

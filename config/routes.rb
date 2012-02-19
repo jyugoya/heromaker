@@ -9,7 +9,7 @@ Heromaker::Application.routes.draw do
   match "game/bye"
 
   controller :game do
-    match "test", :to => :test
+    match "event", :to => :event
   end
 
   get 'admin', :to => 'admin#index'

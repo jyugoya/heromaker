@@ -1,0 +1,10 @@
+﻿育成中キャラクター
+<p>
+名前：<%= chara.name %><br />
+誕生日：<%= chara.birthday %><br />
+年齢：<%= chara.age %>
+</p>
+<% chara.parameters.each do |p| %>
+  <%= p.name %>：<%= p.value %><br />
+<% end %>
+</p>

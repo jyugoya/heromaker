@@ -6,6 +6,7 @@
 <div id="work_div">
 <div id="event_div">
 <%= @message %>
+
 </div>
 <div id="result_div">
 <% @results.each do |r| %>
@@ -13,15 +14,14 @@
 <% end %>
 </div>
 <div id="command_div">
+
+<p>
 <p>
 今日：<%= @current_state.c_date %>
 （ターンエンド：<%= @current_state.turn_end %>）<br/>
-この月は何をしますか？<br/>
-<%= form_tag({:controller => "game", :action => "play"},
-             {:method => :get, :id => "result_form"}) do -%>
-<%= select_tag "command_id", options_from_collection_for_select(Command.find(:all), "id", "name") %>
-<%= submit_tag("実行") %>
-<% end -%>
+</p>
+
+[ <%= link_to("戻る", :game_play) %> ]
 </p>
 </div>
 </div>

@@ -19,7 +19,7 @@
   end
 
   # 渡された日時における年齢を計算する
-  def age(calcDay)
+  def age(calcDay = state.c_date)
     (calcDay.strftime("%Y%m%d").to_i-birthday.strftime("%Y%m%d").to_i)/10000
   end
 
